@@ -390,7 +390,6 @@ void *read_keyboard()
             scanf("%63s", user_input_buffer);
             save_vga_to_bmp(user_input_buffer);
         }
-        // Begin AI code
         else if (user_input_buffer[0] == 'f')
         {
             printf("File load command received\n");
@@ -401,7 +400,6 @@ void *read_keyboard()
             printf("Attempting to load new masterpiece (best effort): %s\n", target_image_file);
             reset();
         }
-        // end AI code
         else
         {
             printf("Unknown command\n");
@@ -602,7 +600,6 @@ void VGA_setup()
     bottom_right_img_y = SCREEN_IMG_HEIGHT - 1 + y_offset;
 }
 
-// begin AI adjusted code
 void stream_image_to_fpga()
 {
     int x, y;
@@ -640,7 +637,6 @@ void stream_image_to_fpga()
     }
     // printf("Image Streaming Complete! Commencing Art.\n");
 }
-// end AI adjusted code
 
 int avalon_setup()
 {
@@ -782,8 +778,7 @@ void save_vga_to_bmp(const char *filename)
     printf("Masterpiece saved to %s\n", filename);
 }
 
-//////////// AI PRODUCED CODE ////////////
-//////////// IMAGE PROCESSING ////////////
+// BEGIN AI PRODUCED CODE ------>
 int read_txt_to_1d_array(const char *filename, uint16_t *array, int size)
 {
     FILE *fp = fopen(filename, "r");
@@ -807,6 +802,7 @@ int read_txt_to_1d_array(const char *filename, uint16_t *array, int size)
     fclose(fp);
     return 1;
 }
+
 void display_image(uint16_t *image)
 {
     int screen_row;
@@ -827,6 +823,7 @@ void display_image(uint16_t *image)
         }
     }
 }
+// <------ END AI PRODUCED CODE
 
 void scaled_image()
 {
@@ -853,7 +850,7 @@ void scaled_image()
     }
 }
 
-////////////////// AI modified code ////////////////////
+// BEGIN AI ADJUSTED CODE ------>
 float VGA_polygon(Shape *polygon, bool draw, float size_weight, float alpha)
 {
     // 1. Declare all variables at the top of the function block
@@ -1006,14 +1003,9 @@ float VGA_polygon(Shape *polygon, bool draw, float size_weight, float alpha)
     {
         return 999999999; // bad score so it gets rejected
     }
-    // return ((1 - size_weight) * (sse_polygon / pixel_count)) - (size_weight)*pixel_count;
-    // return ((1 - size_weight) * ((int)sse_polygon >> 15)) - (size_weight)*pixel_count;
-    // return sse_polygon - 16384 * size_weight * approx_sqrt((int)pixel_count);
-    // printf("%f ", pixel_count); // Commented out - was concatenating with global_counter print
     return sse_polygon - 16384 * (size_weight)*pixel_count;
 }
-////////////////// end AI modified code ////////////////////
-
+// <------ END AI ADJUSTED CODE
 
 float sse_objective(int row, int col, uint16_t pixel_color)
 {
