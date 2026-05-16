@@ -1,6 +1,7 @@
 `ifndef VGA_POLYGON_AXCEL
 `define VGA_POLYGON_AXCEL
 
+// BEGIN AI MODIFIED CODE ------>
 module vga_polygon_accelerator #(
     parameter int WINDOW_WIDTH = 640,
     parameter int WINDOW_HEIGHT = 480,
@@ -532,5 +533,6 @@ module vga_polygon_accelerator #(
     end
 
 endmodule
+// <------ END AI MODFIED CODE
 
 `endif
