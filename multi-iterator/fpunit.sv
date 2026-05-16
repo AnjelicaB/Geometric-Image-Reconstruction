@@ -1,6 +1,7 @@
 `ifndef FPUNIT
 `define FPUNIT
 
+// BEGIN AI MODIFIED CODE ------>
 module Int2Fp(
     input signed [15:0] iInteger,
     output      [31:0] oA
@@ -568,5 +569,6 @@ module FpAdd (
                                                  32'b0;
     end
 endmodule
+// <------ END AI MODFIED CODE
 
 `endif
